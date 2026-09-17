@@ -166,12 +166,14 @@ Todas las consultas de API/vista llevan `WHERE empresa_id = :empresa` sin excepc
 - [x] T5.4 Playwright: navegación, cambio de empresa, filtro "Solo Alta" aplicado (13→9 resultados), sin errores de consola tras fix CORS. Screenshots en /sustentacion (vista_tablero.png, vista_leads.png, vista_leads_alta.png).
 - Bug encontrado y corregido en verificación: leads con 2 conversaciones se duplicaban en el join del API → agregación por lead en SQL (validado: 200/200 únicos).
 
-### Fase 6 — Despliegue & Documentación ⬜
-- [ ] T6.1 ~~Verificar cuota de proyectos GCP~~ **Verificado 2026-09-17**: cuenta `014D68-AABD6C-3B84F1` con 3 proyectos vinculados (viajemos-77223, esic-fabrica-ia, midyear-pattern-487319-b5) + 1 sin facturación; cupo exacto no legible por CLI pero hay espacio típico. Crear `motos-servicios-assessment-ia` sin tocar los existentes; si el create falla por cuota, tramitar aumento por Consola y reportar. Habilitar `run.googleapis.com`, `artifactregistry.googleapis.com`, `aiplatform.googleapis.com` vía CLI en el proyecto nuevo.
-- [ ] T6.2 Dockerfiles (api + web) + deploy a Cloud Run, URL pública verificada con curl.
-- [ ] T6.3 README (qué hace, cómo ejecutar, decisiones D1-D8, supuestos, "con más tiempo").
-- [ ] T6.4 Diagrama de arquitectura final (Mermaid) + 8 diapositivas en /sustentacion.
-- [ ] T6.5 Smoke test de la URL pública desplegada (Playwright).
+### Fase 6 — Despliegue & Documentación ✅ (2026-09-17)
+- [x] T6.1 Proyecto GCP `motos-servicios-assessment-ia` creado y facturando (adelantado a F2 por Vertex AI); APIs run/artifactregistry/aiplatform habilitadas; proyectos existentes intactos.
+- [x] T6.2 Dockerfiles api/web; desplegados a Cloud Run: **web** https://motos-web-53117453818.us-central1.run.app · **api** https://motos-api-53117453818.us-central1.run.app (fix en el camino: standalone de Next + outputFileTracingRoot).
+- [x] T6.3 README completo con URLs, decisiones, supuestos y "con más tiempo".
+- [x] T6.4 Diagrama Mermaid (`sustentacion/arquitectura.mmd`) + 8 diapositivas (`sustentacion/diapositivas.md`).
+- [x] T6.5 Smoke test productivo: web 200, API health OK, aislamiento 400 sin empresa, Playwright navegó la URL pública ("Mis leads" + razones ★ renderizadas).
+- [x] Extra: CI/CD `deploy.yml` (build→deploy→smoke) + SA de permisos mínimos + runbook `docs/runbook-deploy.md`; verificado con disparo real (`gh workflow run` + `gh run watch`).
+- [x] Repo público con historial real: github.com/jivagrisma/motos-y-servicios-ia
 
 ### Material /sustentacion (en paralelo, incremental)
 - [ ] decisiones.md (D1-D8 + decisiones de calibración) · supuestos.md · arquitectura.mmd · diapositivas (borrador desde F3).

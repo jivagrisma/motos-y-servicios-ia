@@ -1,0 +1,74 @@
+name: deploy
+
+on:
+  workflow_dispatch: {}          # disparo manual: gh workflow run deploy.yml
+  push:
+    branches: [main]
+    paths-ignore:
+      - "docs/**"
+      - "sustentacion/**"
+      - "**.md"
+
+env:
+  PROJECT: ${{ secrets.GCP_PROJECT }}
+  REGION: us-central1
+  AR_REPO: us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/motos
+  API_URL: https://motos-api-53117453818.us-central1.run.app
+
+jobs:
+  build-push:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - nombre: api
+            dockerfile: Dockerfile.api
+            extra_args: ""
+          - nombre: web
+            dockerfile: Dockerfile.web
+            extra_args: "--build-arg NEXT_PUBLIC_API_URL=${API_URL}"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+      - uses: google-github-actions/setup-gcloud@v2
+      - name: Configurar Docker para Artifact Registry
+        run: gcloud auth configure-docker $REGION-docker.pkg.dev --quiet
+      - name: Build y push ${{ matrix.nombre }}
+        run: |
+          docker build -f ${{ matrix.dockerfile }} ${{ matrix.extra_args }} \
+            -t ${{ env.AR_REPO }}/${{ matrix.nombre }}:${{ github.sha }} .
+          docker push ${{ env.AR_REPO }}/${{ matrix.nombre }}:${{ github.sha }}
+
+  deploy:
+    needs: build-push
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - nombre: api
+            puerto: "8080"
+            env_vars: "WEB_ORIGINS=*"
+          - nombre: web
+            puerto: "8080"
+            env_vars: ""
+    steps:
+      - uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+      - uses: google-github-actions/setup-gcloud@v2
+      - name: Deploy ${{ matrix.nombre }} a Cloud Run
+        run: |
+          gcloud run deploy motos-${{ matrix.nombre }} \
+            --image ${{ env.AR_REPO }}/${{ matrix.nombre }}:${{ github.sha }} \
+            --region $REGION --project $PROJECT \
+            --allow-unauthenticated --port ${{ matrix.puerto }} \
+            ${{ matrix.env_vars != '' && format('--set-env-vars {0}', matrix.env_vars) || '' }}
+      - name: Smoke test
+        run: |
+          if [ "${{ matrix.nombre }}" = "api" ]; then
+            curl -sf ${{ env.API_URL }}/api/health
+          else
+            curl -sf -o /dev/null https://motos-web-53117453818.us-central1.run.app/
+          fi

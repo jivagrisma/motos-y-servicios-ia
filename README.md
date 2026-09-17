@@ -6,6 +6,20 @@ Assessment Analista de IA · Motos y Servicios de Colombia S.A.S.
 
 **Solución**: pipeline automatizado de punta a punta que normaliza los leads, lee las conversaciones con IA (Vertex AI `gemini-2.5-flash`), asigna un score de prioridad explicable calibrado contra el histórico real de cierres, persiste todo en SQLite con aislamiento estricto por empresa, y publica la vista **"Mis leads de hoy"** para que cada asesor ataque primero lo que más cierra.
 
+## URLs desplegadas (Cloud Run)
+
+- **Web (tablero + Mis leads de hoy)**: https://motos-web-53117453818.us-central1.run.app
+- **API**: https://motos-api-53117453818.us-central1.run.app (`/api/health`, `/api/tablero?empresa=EMP-01`, `/api/leads-del-dia?empresa=EMP-01`)
+
+## CI/CD
+
+`.github/workflows/deploy.yml`: build de ambas imágenes → deploy a Cloud Run → smoke test automático. Se dispara por push a `main` o manualmente. Runbook completo (disparo, monitoreo, verificación, reglas, rollback): `docs/runbook-deploy.md`.
+
+```bash
+gh workflow run deploy.yml --repo jivagrisma/motos-y-servicios-ia
+gh run watch
+```
+
 ## Arquitectura
 
 ```

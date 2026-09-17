@@ -1,0 +1,24 @@
+- generic [active] [ref=f5e1]:
+  - main [ref=f5e2]:
+    - generic [ref=f5e3]:
+      - generic [ref=f5e4]:
+        - heading "Mis leads de hoy" [level=1] [ref=f5e5]
+        - paragraph [ref=f5e6]: Motos y Motores del Norte · ordenados por prioridad
+      - link "Tablero" [ref=f5e7] [cursor=pointer]:
+        - /url: /?empresa=EMP-01
+    - generic [ref=f5e8]:
+      - generic [ref=f5e9]:
+        - button "EMP-01" [ref=f5e10]
+        - button "EMP-02" [ref=f5e11]
+        - button "EMP-03" [ref=f5e12]
+      - generic [ref=f5e13]:
+        - combobox [ref=f5e14]:
+          - option "Todos los asesores" [selected]
+        - combobox [ref=f5e15]:
+          - option "Toda prioridad" [selected]
+          - option "Solo Alta"
+          - option "Solo Media"
+          - option "Solo Baja"
+    - paragraph [ref=f5e16]: Cargando…
+    - list
+  - alert [ref=f5e17]
