@@ -1,0 +1,578 @@
+[
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00011",
+  "motivo": "lead_id_duplicado",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00251",
+  "motivo": "lead_id_duplicado",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-01501",
+  "motivo": "canal_vacio",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-01501",
+  "motivo": "telefono_invalido(6dig)",
+  "detalle": "300123"
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00002",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00025",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00044",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00047",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00080",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00115",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00123",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00124",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00128",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00138",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00139",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00143",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00168",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00182",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00188",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00220",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00240",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00256",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00288",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00303",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00313",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00320",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00331",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00335",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00343",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00393",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00435",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00449",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00482",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00497",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00528",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00538",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00564",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00580",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00604",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00609",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00628",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00634",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00642",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00653",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00654",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00673",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00687",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00719",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00748",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00764",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00776",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00789",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00794",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00830",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00845",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00859",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00903",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00918",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00920",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00921",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00930",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00941",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00956",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-00973",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-01015",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-01078",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-01096",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-01156",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-01195",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-01203",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-01248",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-01300",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-01317",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-01327",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-01375",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-01405",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-01447",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-01456",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-01464",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-01469",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-01482",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-01494",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-01501",
+  "motivo": "ciudad_no_mapeada",
+  "detalle": ""
+ },
+ {
+  "archivo": "leads.csv",
+  "registro_id": "LD-01501",
+  "motivo": "fecha_ilegible(2026-08-33 10:00:00)",
+  "detalle": "2026-08-33 10:00:00"
+ },
+ {
+  "archivo": "conversaciones.json",
+  "registro_id": "CONV-00648",
+  "motivo": "lead_id_huerfano",
+  "detalle": "LD-99188"
+ },
+ {
+  "archivo": "conversaciones.json",
+  "registro_id": "CONV-00650",
+  "motivo": "lead_id_huerfano",
+  "detalle": "LD-95231"
+ },
+ {
+  "archivo": "conversaciones.json",
+  "registro_id": "CONV-00641",
+  "motivo": "lead_id_huerfano",
+  "detalle": "LD-98570"
+ },
+ {
+  "archivo": "conversaciones.json",
+  "registro_id": "CONV-00643",
+  "motivo": "lead_id_huerfano",
+  "detalle": "LD-96391"
+ },
+ {
+  "archivo": "conversaciones.json",
+  "registro_id": "CONV-00647",
+  "motivo": "lead_id_huerfano",
+  "detalle": "LD-90301"
+ },
+ {
+  "archivo": "conversaciones.json",
+  "registro_id": "CONV-00646",
+  "motivo": "lead_id_huerfano",
+  "detalle": "LD-91440"
+ },
+ {
+  "archivo": "conversaciones.json",
+  "registro_id": "CONV-00642",
+  "motivo": "lead_id_huerfano",
+  "detalle": "LD-91598"
+ },
+ {
+  "archivo": "conversaciones.json",
+  "registro_id": "CONV-00652",
+  "motivo": "lead_id_huerfano",
+  "detalle": "LD-94638"
+ },
+ {
+  "archivo": "conversaciones.json",
+  "registro_id": "CONV-00651",
+  "motivo": "lead_id_huerfano",
+  "detalle": "LD-93917"
+ },
+ {
+  "archivo": "conversaciones.json",
+  "registro_id": "CONV-00649",
+  "motivo": "lead_id_huerfano",
+  "detalle": "LD-91911"
+ },
+ {
+  "archivo": "conversaciones.json",
+  "registro_id": "CONV-00645",
+  "motivo": "lead_id_huerfano",
+  "detalle": "LD-98483"
+ },
+ {
+  "archivo": "conversaciones.json",
+  "registro_id": "CONV-00644",
+  "motivo": "lead_id_huerfano",
+  "detalle": "LD-99235"
+ }
+]

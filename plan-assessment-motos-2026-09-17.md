@@ -81,7 +81,7 @@ datasets/ ──► pipeline.py (un disparo) ──► SQLite (motos.db)
 | # | Decisión | Por qué (frase de negocio) |
 |---|---|---|
 | D1 | SQLite, no Postgres/Supabase | En 8 horas lo que arriesga la URL pública es la infra externa; SQLite embebido en el contenedor elimina un modo de falla completo y sigue siendo SQL relacional con modelo propio (cumple la rúbrica). Migrar a Postgres queda documentado como siguiente paso. |
-| D2 | LLM vía API compatible OpenAI (z.ai/GLM), clave por variable de entorno en Cloud Run, **nunca en el repo** + fallback determinista por regex | La extracción es el componente de IA (20 pts); el fallback garantiza que el pipeline corre (y la demo vive) aunque la key o la cuota fallen. |
+| D2 | LLM vía **Vertex AI `gemini-2.5-flash`** con salida estructurada (`response_schema`), autenticado con Application Default Credentials (**cero llaves en el repo**) + fallback determinista por regex | La extracción es el componente de IA (20 pts); modelo estable recomendado por Google para alto volumen/baja latencia; ADC elimina gestión de secrets; el fallback garantiza que el pipeline corre (y la demo vive) aunque la cuota/región fallen. |
 | D3 | Batch de 677 conversaciones en el pipeline (no on-demand) | Costo y latencia acotados; la lista del día se genera una vez, no por clic. |
 | D4 | Score = suma ponderada de componentes binarios/escalados, pesos derivados del lift del histórico | Explicable en sustentación: "cada punto del score corresponde a un incremento real de probabilidad de cierre medido en 2.200 casos". |
 | D5 | Deduplicación intra-empresa por teléfono normalizado | El mismo celular en EMP-01 y EMP-02 son dos clientes distintos (91 casos): fusionarlos rompería el aislamiento. Dentro de la empresa, se consolida el historial multicanal en un solo lead maestro. |
@@ -134,13 +134,13 @@ Todas las consultas de API/vista llevan `WHERE empresa_id = :empresa` sin excepc
 
 ## 3. Tasks (por fase, verificables)
 
-### Fase 1 — Datos & Limpieza (EDA + Normalización) ⬜
-- [ ] T1.1 Repo git init + estructura `pipeline/`, `api/`, `web/`, `docs/`, `datasets/` + commit inicial. *(verificación: `git log`)*
-- [ ] T1.2 `ingesta.py`: carga de los 5 archivos a DataFrames. *(verificación: conteos = 1503/677/24/42/2200)*
-- [ ] T1.3 `normalizar.py`: teléfono→E.164 (regla: strip no-dígitos, quitar 57 inicial si 12 dígitos, exigir 10 dígitos empezando en 3; si no → rechazo), ciudad→canónica (dict ~15 ciudades), fechas→ISO-8601 (multi-formato + slash día-primero), canal/estado→título canónico.
-- [ ] T1.4 `match_modelo.py`: normalización de texto + catálogo como "marca línea" + matching tolerante (distancia de edición para "Hnda"/"Bajai", sufijo año, solo-marca→cualquier línea de esa marca con menor confianza, vacío→NULL).
-- [ ] T1.5 `dedup.py`: intra-empresa por teléfono E.164; consolidar en lead maestro (canal preferente WhatsApp > Meta > Web por tasa de cierre medida).
-- [ ] T1.6 Reporte de calidad: rechazos, duplicados fusionados, cobertura de match de modelo. *(verificación: reporte impreso + spot-check de 10 casos)*
+### Fase 1 — Datos & Limpieza (EDA + Normalización) ✅ (2026-09-17)
+- [x] T1.1 Repo git init + estructura `pipeline/`, `api/`, `web/`, `docs/`, `datasets/` + commit inicial. *(verificación: `git log`)*
+- [x] T1.2 `ingesta.py`: carga de los 5 archivos a DataFrames. *(verificación: conteos = 1503/677/24/42/2200 ✔)*
+- [x] T1.3 `normalizar.py`: teléfono→E.164, ciudad→canónica, fechas→ISO-8601, canal/estado canónicos. *(1.500 teléfonos válidos, 1 rechazo; 79 ciudades vacías de origen; 5 formatos de fecha resueltos)*
+- [x] T1.4 `match_modelo.py`: matching en cascada exacto→fuzzy→línea. *(1.259/1.501 = 84% con SKU; marca-sola y familia ambigua documentadas sin forzar)*
+- [x] T1.5 `dedup.py`: intra-empresa por teléfono E.164. *(49 duplicados consolidados; 91 cross-empresa no fusionados por aislamiento)*
+- [x] T1.6 Reporte de calidad: `docs/calidad_fase1.md` + `data/processed/rechazos.json` (96 rechazos con motivo). Spot-check de 8 casos fuzzy + 5 leads de control correcto.
 
 ### Fase 2 — Extracción IA ⬜
 - [ ] T2.1 `extraer_ia.py`: prompt con schema JSON estricto + catálogo como lista cerrada; llamada batch con reintentos; `metodo='llm'`.
@@ -166,7 +166,7 @@ Todas las consultas de API/vista llevan `WHERE empresa_id = :empresa` sin excepc
 - [ ] T5.4 Verificación con Playwright CLI: navegación real, filtro por empresa/asesor, legibilidad no-técnica (screenshots). *(verificación: screenshots adjuntos a /sustentacion)*
 
 ### Fase 6 — Despliegue & Documentación ⬜
-- [ ] T6.1 Verificar cuota de proyectos GCP (`gcloud billing accounts list` + `projects list`); crear `motos-servicios-assessment-ia` si hay cupo — **reportar antes de asumir**.
+- [ ] T6.1 ~~Verificar cuota de proyectos GCP~~ **Verificado 2026-09-17**: cuenta `014D68-AABD6C-3B84F1` con 3 proyectos vinculados (viajemos-77223, esic-fabrica-ia, midyear-pattern-487319-b5) + 1 sin facturación; cupo exacto no legible por CLI pero hay espacio típico. Crear `motos-servicios-assessment-ia` sin tocar los existentes; si el create falla por cuota, tramitar aumento por Consola y reportar. Habilitar `run.googleapis.com`, `artifactregistry.googleapis.com`, `aiplatform.googleapis.com` vía CLI en el proyecto nuevo.
 - [ ] T6.2 Dockerfiles (api + web) + deploy a Cloud Run, URL pública verificada con curl.
 - [ ] T6.3 README (qué hace, cómo ejecutar, decisiones D1-D8, supuestos, "con más tiempo").
 - [ ] T6.4 Diagrama de arquitectura final (Mermaid) + 8 diapositivas en /sustentacion.
