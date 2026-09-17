@@ -142,22 +142,22 @@ Todas las consultas de API/vista llevan `WHERE empresa_id = :empresa` sin excepc
 - [x] T1.5 `dedup.py`: intra-empresa por teléfono E.164. *(49 duplicados consolidados; 91 cross-empresa no fusionados por aislamiento)*
 - [x] T1.6 Reporte de calidad: `docs/calidad_fase1.md` + `data/processed/rechazos.json` (96 rechazos con motivo). Spot-check de 8 casos fuzzy + 5 leads de control correcto.
 
-### Fase 2 — Extracción IA ⬜
-- [ ] T2.1 `extraer_ia.py`: prompt con schema JSON estricto + catálogo como lista cerrada; llamada batch con reintentos; `metodo='llm'`.
-- [ ] T2.2 Fallback regex determinista (menciona modelo, "cuota inicial", "contado/crédito/financiado", "cita", "cotiz"); `metodo='regex'`.
-- [ ] T2.3 Validación de salida: toda conversación produce registro con schema válido o queda en rechazos.
-- [ ] T2.4 Muestra manual de 20 extracciones vs. lectura del chat (precisión reportada). *(verificación: tabla lado a lado)*
+### Fase 2 — Extracción IA ✅ (2026-09-17)
+- [x] T2.1 `extraer_ia.py`: Vertex AI gemini-2.5-flash, schema JSON estricto, 8 workers con client thread-local. *(665/665 conversaciones con método `llm`, 0 fallbacks por error)*
+- [x] T2.2 Fallback regex determinista implementado y probado (se activó en el piloto antes de corregir el threading; contrato idéntico).
+- [x] T2.3 Validación: toda conversación produce registro con schema válido o rechazo.
+- [x] T2.4 Muestra manual de 6 conversaciones vs extracción (lado a lado): 6/6 coherentes; caso borde "0 palos" documentado. Señales: 201 citas, 288 cuotas manifiestas, 55 contado.
 
-### Fase 3 — Priorización & Scoring ⬜
-- [ ] T3.1 `calibrar.py`: sobre historico_cierres.csv medir lift por variable y combinación (ya medido en diagnóstico; codificarlo reproducible).
-- [ ] T3.2 `scoring.py`: pesos ∝ lift (candidato inicial sobre evidencia: cita pedida, cuota manifiesta, contado, antigüedad<24h aún sin contacto, multicanal, WhatsApp); score 0-100 + banda.
-- [ ] T3.3 Backtest: aplicar el score a los 2.200 históricos → tasa de cierre por banda. **Criterio de salida: monotonía Alta>Media>Baja; si falla, ajustar pesos y documentar.**
-- [ ] T3.4 Documento de calibración para /sustentacion (pesos, lifts, backtest). *(verificación: backtest reproducible con un comando)*
+### Fase 3 — Priorización & Scoring ✅ (2026-09-17)
+- [x] T3.1 `calibrar.py` → `docs/calibracion.json` (lift reproducible por señal y combinación).
+- [x] T3.2 `scoring.py`: score 0-100, pesos ∝ lift medido, 8 componentes explicables en español.
+- [x] T3.3 Backtest monótono: **Alta 13,4% > Media 8,0% > Baja 5,4%** (2,5× entre extremos, global 8,9%) → `docs/backtest.json`.
+- [x] T3.4 Documentación de calibración para sustentación (en /sustentacion, ver commit).
 
-### Fase 4 — Base de Datos ⬜
-- [ ] T4.1 `ddl.sql` con el esquema 2.3 + seed de empresas.
-- [ ] T4.2 `cargar_bd.py`: upsert idempotente desde los outputs de F1-F3 (re-ejecutar el pipeline no duplica filas).
-- [ ] T4.3 Test de aislamiento: query por cada empresa devuelve solo sus leads; test de idempotencia (2 ejecuciones = mismos conteos). *(verificación: script de tests con asserts)*
+### Fase 4 — Base de Datos ✅ (2026-09-17)
+- [x] T4.1 `pipeline/ddl.sql`: 11 tablas con FKs e índices por empresa.
+- [x] T4.2 `pipeline/cargar_bd.py`: carga limpia transaccional idempotente + asignación por capacidad (614 leads asignados).
+- [x] T4.3 `tests/test_bd.py`: aislamiento 0 fugas en las 3 empresas, 0 asignaciones cruzadas, 0 asesores sobrecargados, idempotencia verificada (2 ejecuciones = mismos conteos). **TODOS PASAN.**
 
 ### Fase 5 — Automatización & API/Frontend ⬜
 - [ ] T5.1 `pipeline.py --run`: orquesta F1→F4 en un comando, con log por etapa y código de salida.

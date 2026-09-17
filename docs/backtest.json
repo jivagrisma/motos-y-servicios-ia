@@ -1,0 +1,21 @@
+{
+ "Alta": {
+  "n": 722,
+  "cerrados": 97,
+  "tasa": 0.1343,
+  "lift": 1.5
+ },
+ "Media": {
+  "n": 790,
+  "cerrados": 63,
+  "tasa": 0.0797,
+  "lift": 0.89
+ },
+ "Baja": {
+  "n": 688,
+  "cerrados": 37,
+  "tasa": 0.0538,
+  "lift": 0.6
+ },
+ "monotono": true
+}

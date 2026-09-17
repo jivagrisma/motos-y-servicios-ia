@@ -1,0 +1,114 @@
+{
+ "global": {
+  "cerrados": 197,
+  "n": 2200,
+  "tasa": 0.0895
+ },
+ "senales": {
+  "cita": {
+   "grupo": "pidió cita",
+   "cerrados": 70,
+   "n": 639,
+   "tasa": 0.1095,
+   "lift": 1.22
+  },
+  "no_cita": {
+   "grupo": "no pidió cita",
+   "cerrados": 127,
+   "n": 1561,
+   "tasa": 0.0814,
+   "lift": 0.91
+  },
+  "cuota_si": {
+   "grupo": "cuota inicial manifiesta",
+   "cerrados": 97,
+   "n": 887,
+   "tasa": 0.1094,
+   "lift": 1.22
+  },
+  "cuota_no": {
+   "grupo": "cuota NO manifiesta",
+   "cerrados": 60,
+   "n": 743,
+   "tasa": 0.0808,
+   "lift": 0.9
+  },
+  "cuota_noinforma": {
+   "grupo": "cuota no informa",
+   "cerrados": 40,
+   "n": 570,
+   "tasa": 0.0702,
+   "lift": 0.78
+  },
+  "contado": {
+   "grupo": "pago contado",
+   "cerrados": 41,
+   "n": 373,
+   "tasa": 0.1099,
+   "lift": 1.23
+  },
+  "credito": {
+   "grupo": "pago crédito",
+   "cerrados": 107,
+   "n": 1392,
+   "tasa": 0.0769,
+   "lift": 0.86
+  },
+  "respuesta_rapida": {
+   "grupo": "primer contacto <24h",
+   "cerrados": 145,
+   "n": 1257,
+   "tasa": 0.1154,
+   "lift": 1.29
+  },
+  "respuesta_lenta": {
+   "grupo": "primer contacto >=24h",
+   "cerrados": 52,
+   "n": 764,
+   "tasa": 0.0681,
+   "lift": 0.76
+  },
+  "canal_whatsapp": {
+   "grupo": "canal WhatsApp",
+   "cerrados": 114,
+   "n": 1206,
+   "tasa": 0.0945,
+   "lift": 1.06
+  },
+  "canal_meta_ads": {
+   "grupo": "canal Meta Ads",
+   "cerrados": 54,
+   "n": 670,
+   "tasa": 0.0806,
+   "lift": 0.9
+  },
+  "canal_formulario_web": {
+   "grupo": "canal Formulario Web",
+   "cerrados": 29,
+   "n": 324,
+   "tasa": 0.0895,
+   "lift": 1.0
+  },
+  "cita_y_rapida": {
+   "grupo": "cita + <24h",
+   "cerrados": 52,
+   "n": 362,
+   "tasa": 0.1436,
+   "lift": 1.6
+  },
+  "cita_y_cuota": {
+   "grupo": "cita + cuota",
+   "cerrados": 33,
+   "n": 238,
+   "tasa": 0.1387,
+   "lift": 1.55
+  },
+  "nada": {
+   "grupo": "sin señales + >=24h",
+   "cerrados": 16,
+   "n": 309,
+   "tasa": 0.0518,
+   "lift": 0.58
+  }
+ }
+}
