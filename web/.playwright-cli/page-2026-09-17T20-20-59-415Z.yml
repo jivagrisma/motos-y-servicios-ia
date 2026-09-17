@@ -1,0 +1,36 @@
+- generic [active] [ref=f4e1]:
+  - main [ref=f4e2]:
+    - generic [ref=f4e3]:
+      - generic [ref=f4e4]:
+        - heading "Mis leads de hoy" [level=1] [ref=f4e5]
+        - paragraph [ref=f4e6]: Comercializadora Andina · ordenados por prioridad
+      - link "Tablero" [ref=f4e7] [cursor=pointer]:
+        - /url: /?empresa=EMP-02
+    - generic [ref=f4e8]:
+      - generic [ref=f4e9]:
+        - button "EMP-01" [ref=f4e10]
+        - button "EMP-02" [ref=f4e11]
+        - button "EMP-03" [ref=f4e12]
+      - generic [ref=f4e13]:
+        - combobox [ref=f4e14]:
+          - option "Todos los asesores" [selected]
+          - option "Julián Zapata Ramírez"
+          - option "Erika Muñoz Vargas"
+          - option "Alexander Vargas Restrepo"
+          - option "Yesenia Salazar Muñoz"
+          - option "Nelson Correa Correa"
+          - option "Jhon Jairo Vargas Quintero"
+          - option "Nelson Vargas Giraldo"
+          - option "Sandra Milena Betancur Giraldo"
+          - option "Wilmar Quintero Vargas"
+          - option "Kevin Cardona Herrera"
+          - option "Claudia Patricia Salazar Torres"
+          - option "Yuliana Arias Pérez"
+        - combobox [ref=f4e15]:
+          - option "Toda prioridad" [selected]
+          - option "Solo Alta"
+          - option "Solo Media"
+          - option "Solo Baja"
+    - paragraph [ref=f4e16]: Cargando…
+    - list
+  - alert [ref=f4e17]

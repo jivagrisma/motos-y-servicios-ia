@@ -1,0 +1,7 @@
+web/node_modules
+web/.next
+.venv
+.git
+.claude
+*.zip
+__pycache__

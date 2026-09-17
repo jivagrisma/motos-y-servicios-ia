@@ -159,11 +159,12 @@ Todas las consultas de API/vista llevan `WHERE empresa_id = :empresa` sin excepc
 - [x] T4.2 `pipeline/cargar_bd.py`: carga limpia transaccional idempotente + asignación por capacidad (614 leads asignados).
 - [x] T4.3 `tests/test_bd.py`: aislamiento 0 fugas en las 3 empresas, 0 asignaciones cruzadas, 0 asesores sobrecargados, idempotencia verificada (2 ejecuciones = mismos conteos). **TODOS PASAN.**
 
-### Fase 5 — Automatización & API/Frontend ⬜
-- [ ] T5.1 `pipeline.py --run`: orquesta F1→F4 en un comando, con log por etapa y código de salida.
-- [ ] T5.2 FastAPI: endpoints 2.4 + filtro empresa obligatorio (400 si falta).
-- [ ] T5.3 Next.js: vista "Mis leads de hoy" (mobile-first) + tablero.
-- [ ] T5.4 Verificación con Playwright CLI: navegación real, filtro por empresa/asesor, legibilidad no-técnica (screenshots). *(verificación: screenshots adjuntos a /sustentacion)*
+### Fase 5 — Automatización & API/Frontend ✅ (2026-09-17)
+- [x] T5.1 `pipeline.py --run` (+ `--sin-ia`): orquesta fase1 → extracción IA → carga BD en un disparo, log por etapa.
+- [x] T5.2 FastAPI (puerto 8001 en dev — el 8000 está ocupado por otro servicio del sistema): `/api/leads-del-dia`, `/api/tablero`, `/api/lead/{id}`, `/api/meta`, `/api/pipeline/run`; empresa obligatoria → **400 sin ella** (verificado con curl).
+- [x] T5.3 Next.js 16 en 3000: tablero con KPIs + vista "Mis leads de hoy" con filtros empresa/asesor/banda, tarjetas con score y razones en lenguaje comercial, detalle expandible.
+- [x] T5.4 Playwright: navegación, cambio de empresa, filtro "Solo Alta" aplicado (13→9 resultados), sin errores de consola tras fix CORS. Screenshots en /sustentacion (vista_tablero.png, vista_leads.png, vista_leads_alta.png).
+- Bug encontrado y corregido en verificación: leads con 2 conversaciones se duplicaban en el join del API → agregación por lead en SQL (validado: 200/200 únicos).
 
 ### Fase 6 — Despliegue & Documentación ⬜
 - [ ] T6.1 ~~Verificar cuota de proyectos GCP~~ **Verificado 2026-09-17**: cuenta `014D68-AABD6C-3B84F1` con 3 proyectos vinculados (viajemos-77223, esic-fabrica-ia, midyear-pattern-487319-b5) + 1 sin facturación; cupo exacto no legible por CLI pero hay espacio típico. Crear `motos-servicios-assessment-ia` sin tocar los existentes; si el create falla por cuota, tramitar aumento por Consola y reportar. Habilitar `run.googleapis.com`, `artifactregistry.googleapis.com`, `aiplatform.googleapis.com` vía CLI en el proyecto nuevo.

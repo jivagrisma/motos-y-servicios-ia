@@ -3,17 +3,25 @@ exige `empresa` y filtra por ella; no existe endpoint que cruce empresas.
 Ejecución: uvicorn api.app:app --port 8000
 """
 import json
+import os
 import sqlite3
 import subprocess
 import sys
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException, Query
+from fastapi.middleware.cors import CORSMiddleware
 
 ROOT = Path(__file__).resolve().parent.parent
 DB = ROOT / "data" / "motos.db"
 
 app = FastAPI(title="Motos y Servicios — Leads IA", version="1.0")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[o for o in os.environ.get("WEB_ORIGINS", "http://localhost:3000,http://127.0.0.1:3000").split(",") if o],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 def conn() -> sqlite3.Connection:
@@ -70,7 +78,19 @@ def leads_del_dia(
         FROM scoring s
         JOIN leads l   ON l.lead_id = s.lead_id AND l.empresa_id = s.empresa_id
         LEFT JOIN catalogo c ON c.sku = l.sku_sugerido
-        LEFT JOIN extracciones_ia e ON e.lead_id = l.lead_id
+        LEFT JOIN (
+            SELECT lead_id,
+                   CASE WHEN MAX(cuota_inicial = 'SI') = 1 THEN 'SI'
+                        WHEN MAX(cuota_inicial = 'NO') = 1 AND MIN(cuota_inicial = 'NO') = 1 THEN 'NO'
+                        ELSE 'NO_INFORMA' END AS cuota_inicial,
+                   MAX(NULLIF(cuota_inicial_monto, '')) AS cuota_inicial_monto,
+                   COALESCE(MAX(NULLIF(forma_pago, 'no_informa')), 'no_informa') AS forma_pago,
+                   MAX(NULLIF(intencion, '')) AS intencion,
+                   MAX(NULLIF(objecion_principal, '')) AS objecion_principal,
+                   MAX(pidio_cita) AS pidio_cita,
+                   MAX(pidio_cotizacion) AS pidio_cotizacion
+            FROM extracciones_ia GROUP BY lead_id
+        ) e ON e.lead_id = l.lead_id
         WHERE s.empresa_id = ? AND l.es_duplicado = 0
     """
     params: list = [emp]

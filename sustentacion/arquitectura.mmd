@@ -1,0 +1,17 @@
+flowchart LR
+    subfiles["datasets/<br/>leads.csv · conversaciones.json<br/>catalogo · asesores · historico"]
+
+    subgraph Pipeline["pipeline.py --run (un disparo)"]
+        ing["1. Ingesta<br/>(5 archivos)"]
+        norm["2. Normalización<br/>tel +57 · ciudad · fecha ISO<br/>modelo→SKU · dedup intra-empresa"]
+        ia["3. Extracción IA<br/>Vertex AI gemini-2.5-flash<br/>schema JSON + fallback regex"]
+        score["4. Scoring explicable<br/>pesos calibrados vs histórico<br/>backtest monótono"]
+    end
+
+    db[("SQLite — 11 tablas<br/>aislamiento por empresa_id")]
+    api["FastAPI (Cloud Run)<br/>/api/leads-del-dia · /api/tablero<br/>empresa obligatoria"]
+    web["Next.js (Cloud Run)<br/>Mis leads de hoy + Tablero"]
+
+    files --> ing --> norm --> ia --> score --> db --> api --> web
+
+    hist["historico_cierres.csv<br/>2.200 casos"] -.->|calibra pesos| score

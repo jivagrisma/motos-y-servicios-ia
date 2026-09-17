@@ -1,0 +1,2 @@
+[     455ms] [ERROR] Access to fetch at 'http://localhost:8001/api/tablero?empresa=EMP-01' from origin 'http://localhost:3000' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:3000/:0
+[     457ms] [ERROR] Failed to load resource: net::ERR_FAILED @ http://localhost:8001/api/tablero?empresa=EMP-01:0

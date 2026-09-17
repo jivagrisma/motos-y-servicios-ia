@@ -1,0 +1,6 @@
+pandas
+fastapi
+uvicorn[standard]
+google-genai
+python-dateutil
+httpx
