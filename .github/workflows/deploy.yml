@@ -29,6 +29,13 @@ jobs:
             extra_args: "--build-arg NEXT_PUBLIC_API_URL=${API_URL}"
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Regenerar BD desde los datasets (el .db no vive en git)
+        run: |
+          pip install -q -r requirements.txt
+          python pipeline.py --run --sin-ia
       - uses: google-github-actions/auth@v2
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
