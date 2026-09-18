@@ -120,11 +120,11 @@ function LeadsContent() {
               </div>
               <div className="min-w-0 flex-1">
                 <p className="truncate font-semibold">{lead.nombre_cliente || "Sin nombre"}</p>
-                <p className="truncate text-sm text-slate-600">
+                <p className="truncate text-sm font-medium text-slate-800">
                   {lead.modelo_interes_texto || "Modelo por definir"}
                   {lead.precio_lista ? ` · ${formatoPrecio(lead.precio_lista)}` : ""}
                 </p>
-                <p className="mt-0.5 text-xs text-slate-400">
+                <p className="mt-0.5 text-xs text-slate-600">
                   {lead.ciudad_canonica || "Ciudad s/d"} · {lead.canal} · {lead.punto_venta_id}
                 </p>
                 {lead.razones.length > 0 && (
@@ -161,7 +161,7 @@ function LeadsContent() {
                   <strong>Pidió cita:</strong> {lead.pidio_cita ? "Sí" : "No"} · <strong>cotización:</strong>{" "}
                   {lead.pidio_cotizacion ? "Sí" : "No"}
                 </p>
-                <p className="mt-1 text-xs text-slate-400">
+                <p className="mt-1 text-xs text-slate-500">
                   Registrado {lead.fecha_registro_iso} · lead {lead.lead_id}
                   {lead.asignado_asesor_id ? ` · asignado a ${lead.asignado_asesor_id}` : ""}
                 </p>

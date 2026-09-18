@@ -1,7 +1,7 @@
 # Notas de decisiones y su justificación (para la sustentación)
 
 ## D1 — SQLite embebido, no Postgres/Supabase/Cloud SQL
-**Negocio**: en 8 horas, lo que más arriesga la URL pública del día de la sustentación es la infraestructura externa. SQLite elimina un modo de falla completo y sigue siendo SQL relacional con modelo propio (11 tablas, FKs).
+**Negocio**: SQLite elimina un modo de falla completo y sigue siendo SQL relacional con modelo propio (11 tablas, FKs).
 **Frase de 1 línea**: "La base vive dentro del servicio; no hay nada que pueda caerse aparte del servicio mismo."
 **Siguiente paso declarado**: migrar a Cloud SQL/Postgres con la misma DDL.
 

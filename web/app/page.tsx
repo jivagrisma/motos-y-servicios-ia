@@ -65,7 +65,7 @@ export default function TableroPage() {
 
           <section className="mt-6 grid gap-4 md:grid-cols-2">
             <div className="rounded-xl border bg-white p-4">
-              <h2 className="mb-3 text-sm font-semibold text-slate-500">Leads por canal</h2>
+              <h2 className="mb-3 text-sm font-semibold text-slate-600">Leads por canal</h2>
               <ul className="space-y-2">
                 {Object.entries(data.por_canal).map(([canal, n]) => (
                   <li key={canal} className="flex items-center gap-2 text-sm">
@@ -80,12 +80,12 @@ export default function TableroPage() {
             </div>
 
             <div className="rounded-xl border bg-white p-4">
-              <h2 className="mb-3 text-sm font-semibold text-slate-500">Por punto de venta</h2>
+              <h2 className="mb-3 text-sm font-semibold text-slate-600">Por punto de venta</h2>
               <ul className="max-h-48 space-y-1 overflow-auto text-sm">
                 {data.por_punto_venta.map((pv) => (
                   <li key={pv.punto_venta_id} className="flex justify-between">
                     <span>{pv.punto_venta_id}</span>
-                    <span className="text-slate-500">
+                    <span className="text-slate-600">
                       {pv.n} leads · prioridad media {pv.score_promedio}
                     </span>
                   </li>
@@ -95,7 +95,7 @@ export default function TableroPage() {
           </section>
 
           <section className="mt-4 rounded-xl border bg-white p-4 text-sm text-slate-600">
-            <h2 className="mb-2 text-sm font-semibold text-slate-500">Calidad de datos</h2>
+            <h2 className="mb-2 text-sm font-semibold text-slate-600">Calidad de datos</h2>
             <p>
               Conversaciones leídas con IA: <strong>{data.calidad.ext_llm}</strong> · con método
               alternativo: <strong>{data.calidad.ext_regex}</strong> · registros rechazados por
@@ -111,7 +111,7 @@ export default function TableroPage() {
 function Kpi({ label, valor, color = "text-slate-900" }: { label: string; valor: number; color?: string }) {
   return (
     <div className="rounded-xl border bg-white p-4">
-      <p className="text-xs text-slate-500">{label}</p>
+      <p className="text-xs text-slate-600">{label}</p>
       <p className={`mt-1 text-2xl font-bold tabular-nums ${color}`}>{valor}</p>
     </div>
   );
