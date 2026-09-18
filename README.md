@@ -76,17 +76,24 @@ La extracción con LLM requiere credenciales de GCP (Application Default Credent
 
 ## Supuestos sobre los datos
 
-Ver `docs/supuestos.md` (9 supuestos: fechas ambiguas, dedup, lead maestro, teléfono válido, marca sola sin SKU, ciudades, huérfanos, histórico separado, sufijo año).
+Detalle completo en `docs/supuestos.md`. Resumen de los 9:
+
+1. Fechas slash ambiguas (día y mes ≤12, 481 casos) → día-primero, convención Colombia; impacto ≤2 días.
+2. Misma persona en dos empresas = dos clientes distintos (91 teléfonos en >1 empresa); la deduplicación es solo intra-empresa para no romper el aislamiento del CRM compartido.
+3. Lead maestro en la fusión: WhatsApp > Meta Ads > Formulario Web, desempate por fecha más antigua.
+4. Teléfono válido = 10 dígitos iniciando en 3 (móvil Colombia) → E.164 `+57`; lo demás se rechaza con motivo, no se inventa.
+5. Modelo "marca sola" o "familia ambigua" ("Bajaj", "Bajaj Pulsar" → 3 SKUs posibles) queda sin SKU con etiqueta; no se fuerza un match falso.
+6. Ciudades mapeadas a diccionario canónico (~25); las 79 vacías de origen se declaran, no se imputan.
+7. Las 12 conversaciones huérfanas (lead_id inexistente) van a rechazos visibles, no se descartan en silencio.
+8. `historico_cierres.csv` es histórico (namespace HX-*): calibra el score, no se mezcla con los leads operativos (LD-*).
+9. El sufijo "2026" en `modelo_interes_texto` es el año del modelo; se elimina para el matching contra catálogo.
 
 ## Verificación
 
 - Calidad de F1: `docs/calidad_fase1.md` · calibración: `docs/calibracion.json` · backtest: `docs/backtest.json`
 - Tests: `tests/test_bd.py` (aislamiento 0 fugas, capacidad, idempotencia)
 - Evidencia de UI: `sustentacion/vista_*.png`
-
-## Con más tiempo
-
-Auth real por asesor · migración a Cloud SQL · recalibrar el score con los cierres nuevos que genere la propia lista · integración bidireccional con el CRM · alerta proactiva de leads por cumplir 24h sin contacto.
+- **Esquema de BD versionado en el repo**: `pipeline/ddl.sql` (11 tablas con FKs e índices por empresa; SQLite en dev, portable a PostgreSQL sin cambios de DDL)
 
 ## Estructura del repo
 
@@ -99,3 +106,7 @@ docs/        calidad, supuestos, calibración, backtest
 sustentacion/ decisiones, arquitectura, diapositivas, screenshots
 data/        outputs del pipeline + SQLite (generado)
 ```
+
+## Con más tiempo
+
+Auth real por asesor · migración a Cloud SQL · recalibrar el score con los cierres nuevos que genere la propia lista · integración bidireccional con el CRM · alerta proactiva de leads por cumplir 24h sin contacto.
