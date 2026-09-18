@@ -1,0 +1,14 @@
+- generic [active] [ref=e1]:
+  - main [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - heading "Tablero comercial" [level=1] [ref=e5]
+        - paragraph [ref=e6]: Motos y Motores del Norte
+      - navigation [ref=e7]:
+        - link "Mis leads de hoy →" [ref=e8] [cursor=pointer]:
+          - /url: /leads?empresa=EMP-01
+    - generic [ref=e9]:
+      - button "Motos y Motores del Norte" [ref=e10]
+      - button "Comercializadora Andina" [ref=e11]
+      - button "Motos Caribe" [ref=e12]
+  - alert [ref=e13]

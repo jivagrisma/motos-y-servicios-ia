@@ -77,7 +77,7 @@ function LeadsContent() {
           <select
             value={asesor}
             onChange={(e) => setAsesor(e.target.value)}
-            className="rounded-lg border border-slate-300 px-3 py-1.5 text-sm"
+            className="rounded-lg border border-slate-400 bg-white px-3 py-1.5 text-sm text-slate-900"
           >
             <option value="">Todos los asesores</option>
             {asesoresEmpresa.map((a) => (
@@ -89,7 +89,7 @@ function LeadsContent() {
           <select
             value={banda}
             onChange={(e) => setBanda(e.target.value)}
-            className="rounded-lg border border-slate-300 px-3 py-1.5 text-sm"
+            className="rounded-lg border border-slate-400 bg-white px-3 py-1.5 text-sm text-slate-900"
           >
             <option value="">Toda prioridad</option>
             <option value="Alta">Solo Alta</option>
@@ -103,7 +103,7 @@ function LeadsContent() {
       {error && (
         <p className="rounded-lg border border-red-300 bg-red-50 p-4 text-sm text-red-700">Error: {error}</p>
       )}
-      {!leads && !error && <p className="p-6 text-center text-sm text-slate-500">Cargando…</p>}
+      {!leads && !error && <p className="p-6 text-center text-sm text-slate-700">Cargando…</p>}
 
       <ul className="space-y-3">
         {leads?.map((lead) => (
@@ -124,7 +124,7 @@ function LeadsContent() {
                   {lead.modelo_interes_texto || "Modelo por definir"}
                   {lead.precio_lista ? ` · ${formatoPrecio(lead.precio_lista)}` : ""}
                 </p>
-                <p className="mt-0.5 text-xs text-slate-600">
+                <p className="mt-0.5 text-xs text-slate-900">
                   {lead.ciudad_canonica || "Ciudad s/d"} · {lead.canal} · {lead.punto_venta_id}
                 </p>
                 {lead.razones.length > 0 && (
@@ -176,7 +176,7 @@ function LeadsContent() {
 
 export default function LeadsPage() {
   return (
-    <Suspense fallback={<p className="p-6 text-center text-sm text-slate-500">Cargando…</p>}>
+    <Suspense fallback={<p className="p-6 text-center text-sm text-slate-700">Cargando…</p>}>
       <LeadsContent />
     </Suspense>
   );
